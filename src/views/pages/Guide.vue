@@ -110,9 +110,17 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
       <div class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <!-- 使用方式 -->
         <section class="mb-8">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="w-1 h-6 bg-[#D97757] rounded"></span>
-            <h2 class="text-xl font-semibold text-[#3D2C2C]">使用方式</h2>
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-1 h-6 bg-[#D97757] rounded"></span>
+              <h2 class="text-xl font-semibold text-[#3D2C2C]">使用方式</h2>
+            </div>
+            <RouterLink to="/tutorial" class="text-sm text-[#D97757] hover:underline inline-flex items-center gap-1">
+              查看详细教程
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </RouterLink>
           </div>
           <p class="text-[#6B5044] text-sm">您可以在配置文件中指定模型，点击下方模型标签可切换当前选中项，并复制对应名称。</p>
         </section>
