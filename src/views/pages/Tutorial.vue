@@ -29,10 +29,15 @@ const copiedCodeBlock = shallowRef<string | null>(null)
 
 // Custom renderer for code blocks with copy button
 const renderer = new marked.Renderer()
-const originalCodeRenderer = renderer.code.bind(renderer)
-renderer.code = (code: string, language: string | undefined) => {
+renderer.code = (token: { text: string; lang?: string }) => {
+  const code = token.text
+  const language = token.lang || ''
   const codeId = `code-${Math.random().toString(36).substr(2, 9)}`
-  const html = originalCodeRenderer(code, language)
+  const escapedCode = code
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+
   return `<div class="code-block-wrapper" data-code="${encodeURIComponent(code)}">
     <button class="code-copy-btn" data-code-id="${codeId}" title="复制代码">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -40,7 +45,7 @@ renderer.code = (code: string, language: string | undefined) => {
         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
       </svg>
     </button>
-    ${html}
+    <pre><code class="language-${language}">${escapedCode}</code></pre>
   </div>`
 }
 marked.setOptions({ renderer })
