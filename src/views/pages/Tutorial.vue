@@ -32,7 +32,7 @@ const renderer = new marked.Renderer()
 renderer.code = (token: { text: string; lang?: string }) => {
   const code = token.text
   const language = token.lang || ''
-  const codeId = `code-${Math.random().toString(36).substr(2, 9)}`
+  const codeId = `code-${Math.random().toString(36).slice(2, 11)}`
   const escapedCode = code
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
