@@ -25,7 +25,6 @@ const FREE_MODEL_NAMES = [
 
 const selectedModel = shallowRef<string>(PAID_MODEL_NAMES[0])
 const copiedModelName = shallowRef<string | null>(null)
-const copiedCodeBlock = shallowRef<string | null>(null)
 
 // Custom renderer for code blocks with copy button
 const renderer = new marked.Renderer()
