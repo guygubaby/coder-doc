@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 
 :root {
@@ -20,11 +21,10 @@ body {
     linear-gradient(180deg, #fafbff 0%, #f5f7fd 100%);
   color: #0f172a;
   font-family:
+    "Nunito",
+    "Noto Sans SC",
     "PingFang SC",
     "Microsoft YaHei",
-    "Helvetica Neue",
-    Helvetica,
-    Arial,
     sans-serif;
 }
 

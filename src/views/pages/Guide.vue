@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { shallowRef } from 'vue'
-import { Motion } from 'motion-v'
+import { motion, Motion } from 'motion-v'
 
 const MODEL_NAMES = [
   'glm-5',
@@ -88,12 +88,19 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
             <RouterLink to="/guide" class="px-4 py-2 rounded-xl text-sm font-semibold text-[#D97757] bg-[#D97757]/5">
               使用说明
             </RouterLink>
-            <a href="https://coder.guygubaby.top" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-[#6B5044] hover:text-[#D97757] hover:bg-[#D97757]/5 inline-flex items-center gap-1">
+            <motion.a
+              href="https://coder.guygubaby.top"
+              target="_blank"
+              rel="noopener noreferrer"
+              :while-hover="{ scale: 1.05 }"
+              :while-press="{ scale: 0.95 }"
+              class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-[#6B5044] hover:text-[#D97757] hover:bg-[#D97757]/5 inline-flex items-center gap-1"
+            >
               官网链接
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>
@@ -130,15 +137,19 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
                   class="absolute inset-0 bg-[#D97757] rounded-xl shadow-md"
                   :transition="{ type: 'spring', stiffness: 500, damping: 35 }"
                 />
-                <button
+                <motion.button
                   @click="selectedModel = model"
+                  :while-hover="{ scale: 1.03 }"
+                  :while-press="{ scale: 0.97 }"
                   class="relative px-4 py-2 pr-10 rounded-xl text-sm font-medium transition-colors cursor-pointer"
                   :class="selectedModel === model ? 'text-white' : 'bg-[#D97757]/5 text-[#3D2C2C] hover:bg-[#D97757]/10'"
                 >
                   {{ model }}
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   @click.stop="copyModelName(model)"
+                  :while-hover="{ scale: 1.1 }"
+                  :while-press="{ scale: 0.9 }"
                   class="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded transition-all"
                   :class="copiedModelName === model ? 'text-green-500' : selectedModel === model ? 'text-white/70 hover:text-white' : 'text-[#6B5044]/50 hover:text-[#6B5044]'"
                   title="复制模型名"
@@ -149,7 +160,7 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
                   <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
@@ -159,24 +170,28 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
             <div class="border-b border-[#D97757]/10 px-5 py-4">
               <h3 class="text-base font-semibold text-[#3D2C2C]">环境变量配置</h3>
               <p class="text-sm text-[#6B5044] mt-1">复制以下环境变量到您的配置文件中</p>
-              <a
+              <motion.a
                 href="https://coder.guygubaby.top/console/token"
                 target="_blank"
                 rel="noopener noreferrer"
+                :while-hover="{ scale: 1.02 }"
+                :while-press="{ scale: 0.98 }"
                 class="inline-flex items-center text-sm text-[#D97757] hover:underline mt-2"
               >
                 <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 获取您的令牌
-              </a>
+              </motion.a>
             </div>
             <div class="relative">
               <pre class="bg-[#FFF8F3] p-5 text-sm text-[#3D2C2C] overflow-x-auto"><code>export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"
 export ANTHROPIC_AUTH_TOKEN="你的令牌"
 export ANTHROPIC_MODEL="{{ selectedModel }}"</code></pre>
-              <button
+              <motion.button
                 @click="copyEnvVars"
+                :while-hover="{ scale: 1.1 }"
+                :while-press="{ scale: 0.9 }"
                 class="absolute bottom-3 right-3 p-2 rounded-lg transition-all"
                 :class="copiedEnv ? 'bg-green-500 text-white' : 'bg-white text-[#6B5044] hover:bg-[#D97757]/10'"
               >
@@ -186,7 +201,7 @@ export ANTHROPIC_MODEL="{{ selectedModel }}"</code></pre>
                 <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -207,13 +222,17 @@ export ANTHROPIC_MODEL="{{ selectedModel }}"</code></pre>
               :key="model"
               class="relative group"
             >
-              <button
+              <motion.button
                 @click="copyFreeModelName(model)"
+                :while-hover="{ scale: 1.03 }"
+                :while-press="{ scale: 0.97 }"
                 class="relative px-4 py-2 pr-10 rounded-xl text-sm font-medium transition-all cursor-pointer bg-[#D97757]/5 text-[#3D2C2C] hover:bg-[#D97757]/10"
               >
                 {{ model }}
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                :while-hover="{ scale: 1.1 }"
+                :while-press="{ scale: 0.9 }"
                 class="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded transition-all"
                 :class="copiedFreeModelName === model ? 'text-green-500' : 'text-[#6B5044]/50 group-hover:text-[#6B5044]'"
                 title="复制模型名"
@@ -224,7 +243,7 @@ export ANTHROPIC_MODEL="{{ selectedModel }}"</code></pre>
                 <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-              </button>
+              </motion.button>
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { motion } from 'motion-v'
 </script>
 
 <template>
@@ -21,7 +22,8 @@ import { RouterLink } from 'vue-router'
             <RouterLink to="/guide" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-[#6B5044] hover:text-[#D97757] hover:bg-[#D97757]/5">
               使用说明
             </RouterLink>
-            <a href="https://coder.guygubaby.top" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-[#6B5044] hover:text-[#D97757] hover:bg-[#D97757]/5 inline-flex items-center gap-1">
+            <a
+              href="https://coder.guygubaby.top" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-[#6B5044] hover:text-[#D97757] hover:bg-[#D97757]/5 inline-flex items-center gap-1">
               官网链接
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -44,15 +46,23 @@ import { RouterLink } from 'vue-router'
             支持 GLM (glm-5.1、glm-5)、MiniMax (minimax-m2.7、minimax-m2.5)、Kimi (kimi-k2.6、kimi-k2.5) 等主流国产 AI 模型 API 中转，为开发者提供稳定高效的编程助手服务
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://coder.guygubaby.top/register" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-[#D97757] text-white font-bold rounded-xl cursor-pointer hover:bg-[#C86946] transition-colors inline-flex items-center gap-2">
+            <motion.a
+            :while-hover="{scale: 1.05}"
+            :while-press="{scale: 0.95}"
+             href="https://coder.guygubaby.top/register" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-[#D97757] text-white font-bold rounded-xl cursor-pointer hover:bg-[#C86946] transition-colors inline-flex items-center gap-2">
               立即注册
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
-            </a>
-            <a href="#features" class="px-8 py-3 bg-white text-[#6B5044] font-bold rounded-xl border-2 border-[#D97757]/20 cursor-pointer hover:bg-[#D97757]/5 transition-colors">
+            </motion.a>
+            <motion.a
+              href="#features"
+              :while-hover="{ scale: 1.05 }"
+              :while-press="{ scale: 0.95 }"
+              class="px-8 py-3 bg-white text-[#6B5044] font-bold rounded-xl border-2 border-[#D97757]/20 cursor-pointer hover:bg-[#D97757]/5 transition-colors"
+            >
               了解更多
-            </a>
+            </motion.a>
           </div>
         </div>
       </section>
@@ -116,12 +126,19 @@ import { RouterLink } from 'vue-router'
               免费注册
             </a>即可获得 100 次调用体验，每日签到持续领取额度。按次计费透明清晰，单次一分钱，不再为 token 用量焦虑。
           </p>
-          <a href="https://coder.guygubaby.top/register" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 bg-[#D97757] text-white font-bold rounded-xl cursor-pointer hover:bg-[#C86946] transition-colors">
+          <motion.a
+            href="https://coder.guygubaby.top/register"
+            target="_blank"
+            rel="noopener noreferrer"
+            :while-hover="{ scale: 1.05 }"
+            :while-press="{ scale: 0.95 }"
+            class="inline-flex items-center gap-2 px-8 py-3 bg-[#D97757] text-white font-bold rounded-xl cursor-pointer hover:bg-[#C86946] transition-colors"
+          >
             立即注册
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-          </a>
+          </motion.a>
           <div class="mt-8 flex items-center justify-center flex-wrap gap-6 text-sm text-[#8B7355]">
             <div class="flex items-center">
               <svg class="w-4 h-4 mr-2 text-[#D97757]" fill="currentColor" viewBox="0 0 20 20">
