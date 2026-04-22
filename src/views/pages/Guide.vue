@@ -210,7 +210,7 @@ export ANTHROPIC_MODEL="{{ selectedModel }}"</code></pre>
         <section class="mt-8 mb-8">
           <div class="flex items-center gap-2 mb-2">
             <span class="w-1 h-6 bg-[#D97757] rounded"></span>
-            <h2 class="text-xl font-semibold text-[#3D2C2C]">新增免费模型</h2>
+            <h2 class="text-xl font-semibold text-[#3D2C2C]">更有免费模型</h2>
           </div>
           <p class="text-[#6B5044] text-sm">Open Claw、Hermes Agent 必备</p>
         </section>
@@ -255,6 +255,74 @@ export ANTHROPIC_MODEL="{{ selectedModel }}"</code></pre>
             <p class="text-sm text-[#6B5044] mt-2">
               可使用 <code class="px-1.5 py-0.5 bg-white rounded text-[#D97757] font-mono text-xs">any-free</code> 或
               <code class="px-1.5 py-0.5 bg-white rounded text-[#D97757] font-mono text-xs">kilo-free</code> 模型自动选择可用免费模型。
+            </p>
+          </div>
+        </div>
+
+        <!-- 充值流程 -->
+        <section class="mt-8 mb-8">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-1 h-6 bg-[#D97757] rounded"></span>
+            <h2 class="text-xl font-semibold text-[#3D2C2C]">充值流程</h2>
+          </div>
+          <p class="text-[#6B5044] text-sm">目前暂时只能用兑换码充值</p>
+        </section>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-[#D97757]/10 overflow-hidden">
+          <div class="p-5 space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#D97757]/10 text-[#D97757] flex items-center justify-center text-sm font-semibold">1</div>
+              <div>
+                <p class="text-[#3D2C2C] font-medium">进入个人中心-钱包管理</p>
+                <motion.a
+                  href="https://coder.guygubaby.top/console/topup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  :while-hover="{ scale: 1.02 }"
+                  :while-press="{ scale: 0.98 }"
+                  class="inline-flex items-center text-sm text-[#D97757] hover:underline mt-1"
+                >
+                  <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  点击前往充值页面
+                </motion.a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#D97757]/10 text-[#D97757] flex items-center justify-center text-sm font-semibold">2</div>
+              <div>
+                <p class="text-[#3D2C2C] font-medium">点击购买兑换码即可跳转</p>
+                <motion.a
+                  href="https://pay.ldxp.cn/shop/T962P0JF/5ryr7b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  :while-hover="{ scale: 1.02 }"
+                  :while-press="{ scale: 0.98 }"
+                  class="inline-flex items-center text-sm text-[#D97757] hover:underline mt-1"
+                >
+                  <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  点击前往小铺购买
+                </motion.a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#D97757]/10 text-[#D97757] flex items-center justify-center text-sm font-semibold">3</div>
+              <div>
+                <p class="text-[#3D2C2C] font-medium">购买后可得到兑换码，返回系统使用兑换码进行兑换即可</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-[#D97757]/10 px-5 py-4 bg-[#D97757]/5">
+            <p class="text-sm text-[#6B5044]">
+              <span class="text-[#D97757] font-medium">客服微信：</span>
+              <code class="px-1.5 py-0.5 bg-white rounded text-[#D97757] font-mono text-xs">guygubaby</code>
+              有任何疑问可随时联系
             </p>
           </div>
         </div>
