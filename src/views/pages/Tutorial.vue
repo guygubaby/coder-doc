@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { shallowRef } from 'vue'
+import { shallowRef, computed, onMounted, watch, nextTick } from 'vue'
 import { motion, Motion } from 'motion-v'
 import { marked } from 'marked'
 
-const MODEL_NAMES = [
+const PAID_MODEL_NAMES = [
   'glm-5',
   'glm-5.1',
   'kimi-k2.5',
@@ -23,11 +23,29 @@ const FREE_MODEL_NAMES = [
   'arcee-trinity-free',
 ] as const
 
-const selectedModel = shallowRef<string>(MODEL_NAMES[0])
+const selectedModel = shallowRef<string>(PAID_MODEL_NAMES[0])
 const copiedModelName = shallowRef<string | null>(null)
-const copiedFreeModelName = shallowRef<string | null>(null)
+const copiedCodeBlock = shallowRef<string | null>(null)
 
-const tutorialMarkdown = `
+// Custom renderer for code blocks with copy button
+const renderer = new marked.Renderer()
+const originalCodeRenderer = renderer.code.bind(renderer)
+renderer.code = (code: string, language: string | undefined) => {
+  const codeId = `code-${Math.random().toString(36).substr(2, 9)}`
+  const html = originalCodeRenderer(code, language)
+  return `<div class="code-block-wrapper" data-code="${encodeURIComponent(code)}">
+    <button class="code-copy-btn" data-code-id="${codeId}" title="复制代码">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+    </button>
+    ${html}
+  </div>`
+}
+marked.setOptions({ renderer })
+
+const tutorialMarkdown = computed(() => `
 以下是 Windows、macOS 和 Linux 系统下设置环境变量的详细方法：
 
 ## Windows 系统
@@ -41,6 +59,10 @@ const tutorialMarkdown = `
   "env": {
     "ANTHROPIC_AUTH_TOKEN": "替换为您的API Key",
     "ANTHROPIC_BASE_URL": "https://coder.guygubaby.top",
+    "ANTHROPIC_MODEL": "${selectedModel.value}",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "${selectedModel.value}",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "${selectedModel.value}",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "${selectedModel.value}",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1
   },
   "permissions": {
@@ -66,10 +88,18 @@ VS Code 中插件使用，创建文件 \`~/.claude/config.json\`：
 # PowerShell
 $env:ANTHROPIC_BASE_URL="https://coder.guygubaby.top"
 $env:ANTHROPIC_AUTH_TOKEN="替换为您的API Key"
+$env:ANTHROPIC_MODEL="${selectedModel.value}"
+$env:ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"
+$env:ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"
+$env:ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"
 
 # CMD
 set ANTHROPIC_BASE_URL=https://coder.guygubaby.top
 set ANTHROPIC_AUTH_TOKEN=替换为您的API Key
+set ANTHROPIC_MODEL=${selectedModel.value}
+set ANTHROPIC_DEFAULT_OPUS_MODEL=${selectedModel.value}
+set ANTHROPIC_DEFAULT_SONNET_MODEL=${selectedModel.value}
+set ANTHROPIC_DEFAULT_HAIKU_MODEL=${selectedModel.value}
 \`\`\`
 
 ### 方法3：永久设置（全局生效）
@@ -80,13 +110,17 @@ set ANTHROPIC_AUTH_TOKEN=替换为您的API Key
 2. 在「用户变量」或「系统变量」中新建：
    - 变量名：\`ANTHROPIC_BASE_URL\`
    - 变量值：\`https://coder.guygubaby.top\`
-3. 同样方法添加 \`ANTHROPIC_AUTH_TOKEN\`
+3. 同样方法添加 \`ANTHROPIC_AUTH_TOKEN\`、\`ANTHROPIC_MODEL\`、\`ANTHROPIC_DEFAULT_OPUS_MODEL\`、\`ANTHROPIC_DEFAULT_SONNET_MODEL\`、\`ANTHROPIC_DEFAULT_HAIKU_MODEL\`
 
 **PowerShell 永久设置：**
 
 \`\`\`powershell
 [System.Environment]::SetEnvironmentVariable('ANTHROPIC_BASE_URL', 'https://coder.guygubaby.top', 'User')
 [System.Environment]::SetEnvironmentVariable('ANTHROPIC_AUTH_TOKEN', '替换为您的API Key', 'User')
+[System.Environment]::SetEnvironmentVariable('ANTHROPIC_MODEL', '${selectedModel.value}', 'User')
+[System.Environment]::SetEnvironmentVariable('ANTHROPIC_DEFAULT_OPUS_MODEL', '${selectedModel.value}', 'User')
+[System.Environment]::SetEnvironmentVariable('ANTHROPIC_DEFAULT_SONNET_MODEL', '${selectedModel.value}', 'User')
+[System.Environment]::SetEnvironmentVariable('ANTHROPIC_DEFAULT_HAIKU_MODEL', '${selectedModel.value}', 'User')
 \`\`\`
 
 重启终端后生效。
@@ -104,6 +138,10 @@ set ANTHROPIC_AUTH_TOKEN=替换为您的API Key
   "env": {
     "ANTHROPIC_AUTH_TOKEN": "替换为您的API Key",
     "ANTHROPIC_BASE_URL": "https://coder.guygubaby.top",
+    "ANTHROPIC_MODEL": "${selectedModel.value}",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "${selectedModel.value}",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "${selectedModel.value}",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "${selectedModel.value}",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1
   },
   "permissions": {
@@ -128,6 +166,10 @@ VS Code 中插件使用，创建文件 \`~/.claude/config.json\`：
 \`\`\`bash
 export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"
 export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"
+export ANTHROPIC_MODEL="${selectedModel.value}"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"
 \`\`\`
 
 ### 方法3：永久设置
@@ -138,10 +180,18 @@ export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"
 # 如果是 bash（默认）
 echo 'export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"' >> ~/.bash_profile
 echo 'export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"' >> ~/.bash_profile
+echo 'export ANTHROPIC_MODEL="${selectedModel.value}"' >> ~/.bash_profile
+echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"' >> ~/.bash_profile
+echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"' >> ~/.bash_profile
+echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"' >> ~/.bash_profile
 
 # 如果是 zsh
 echo 'export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"' >> ~/.zshrc
 echo 'export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"' >> ~/.zshrc
+echo 'export ANTHROPIC_MODEL="${selectedModel.value}"' >> ~/.zshrc
+echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"' >> ~/.zshrc
+echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"' >> ~/.zshrc
+echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"' >> ~/.zshrc
 \`\`\`
 
 立即生效：
@@ -163,6 +213,10 @@ source ~/.bash_profile  # 或 source ~/.zshrc
   "env": {
     "ANTHROPIC_AUTH_TOKEN": "替换为您的API Key",
     "ANTHROPIC_BASE_URL": "https://coder.guygubaby.top",
+    "ANTHROPIC_MODEL": "${selectedModel.value}",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "${selectedModel.value}",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "${selectedModel.value}",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "${selectedModel.value}",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1
   },
   "permissions": {
@@ -179,6 +233,10 @@ source ~/.bash_profile  # 或 source ~/.zshrc
 \`\`\`bash
 export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"
 export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"
+export ANTHROPIC_MODEL="${selectedModel.value}"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"
 \`\`\`
 
 ### 方法3：永久设置
@@ -189,10 +247,18 @@ export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"
 # 如果是 bash
 echo 'export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"' >> ~/.bashrc
 echo 'export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"' >> ~/.bashrc
+echo 'export ANTHROPIC_MODEL="${selectedModel.value}"' >> ~/.bashrc
+echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"' >> ~/.bashrc
+echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"' >> ~/.bashrc
+echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"' >> ~/.bashrc
 
 # 如果是 zsh
 echo 'export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"' >> ~/.zshrc
 echo 'export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"' >> ~/.zshrc
+echo 'export ANTHROPIC_MODEL="${selectedModel.value}"' >> ~/.zshrc
+echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"' >> ~/.zshrc
+echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"' >> ~/.zshrc
+echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"' >> ~/.zshrc
 \`\`\`
 
 立即生效：
@@ -211,16 +277,19 @@ source ~/.bashrc  # 或 source ~/.zshrc
 # macOS/Linux
 echo $ANTHROPIC_BASE_URL
 echo $ANTHROPIC_AUTH_TOKEN
+echo $ANTHROPIC_MODEL
 
 # Windows PowerShell
 echo $env:ANTHROPIC_BASE_URL
 echo $env:ANTHROPIC_AUTH_TOKEN
+echo $env:ANTHROPIC_MODEL
 
 # Windows CMD
 echo %ANTHROPIC_BASE_URL%
 echo %ANTHROPIC_AUTH_TOKEN%
+echo %ANTHROPIC_MODEL%
 \`\`\`
-`
+`)
 
 async function copyToClipboard(text: string) {
   try {
@@ -241,15 +310,45 @@ async function copyModelName(model: string) {
   }
 }
 
-async function copyFreeModelName(model: string) {
-  const success = await copyToClipboard(model)
-  if (success) {
-    copiedFreeModelName.value = model
-    setTimeout(() => {
-      copiedFreeModelName.value = null
-    }, 1500)
-  }
+function setupCodeCopyButtons() {
+  document.querySelectorAll('.code-copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      const target = e.currentTarget as HTMLElement
+      const wrapper = target.closest('.code-block-wrapper')
+      if (!wrapper) return
+
+      const code = decodeURIComponent(wrapper.getAttribute('data-code') || '')
+      const success = await copyToClipboard(code)
+
+      if (success) {
+        target.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>`
+        target.classList.add('copied')
+
+        setTimeout(() => {
+          target.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>`
+          target.classList.remove('copied')
+        }, 1500)
+      }
+    })
+  })
 }
+
+onMounted(() => {
+  nextTick(() => {
+    setupCodeCopyButtons()
+  })
+})
+
+watch(selectedModel, () => {
+  nextTick(() => {
+    setupCodeCopyButtons()
+  })
+})
 </script>
 
 <template>
@@ -307,7 +406,7 @@ async function copyFreeModelName(model: string) {
             </div>
             <div class="flex flex-wrap gap-3 p-5">
               <div
-                v-for="model in MODEL_NAMES"
+                v-for="model in PAID_MODEL_NAMES"
                 :key="model"
                 class="relative"
               >
@@ -355,24 +454,32 @@ async function copyFreeModelName(model: string) {
               <div
                 v-for="model in FREE_MODEL_NAMES"
                 :key="model"
-                class="relative group"
+                class="relative"
               >
+                <Motion
+                  v-if="selectedModel === model"
+                  layoutId="model-bg"
+                  class="absolute inset-0 bg-[#D97757] rounded-xl shadow-md"
+                  :transition="{ type: 'spring', stiffness: 500, damping: 35 }"
+                />
                 <motion.button
-                  @click="copyFreeModelName(model)"
+                  @click="selectedModel = model"
                   :while-hover="{ scale: 1.03 }"
                   :while-press="{ scale: 0.97 }"
-                  class="relative px-4 py-2 pr-10 rounded-xl text-sm font-medium transition-all cursor-pointer bg-[#D97757]/5 text-[#3D2C2C] hover:bg-[#D97757]/10"
+                  class="relative px-4 py-2 pr-10 rounded-xl text-sm font-medium transition-colors cursor-pointer"
+                  :class="selectedModel === model ? 'text-white' : 'bg-[#D97757]/5 text-[#3D2C2C] hover:bg-[#D97757]/10'"
                 >
                   {{ model }}
                 </motion.button>
                 <motion.button
+                  @click.stop="copyModelName(model)"
                   :while-hover="{ scale: 1.1 }"
                   :while-press="{ scale: 0.9 }"
                   class="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded transition-all"
-                  :class="copiedFreeModelName === model ? 'text-green-500' : 'text-[#6B5044]/50 group-hover:text-[#6B5044]'"
+                  :class="copiedModelName === model ? 'text-green-500' : selectedModel === model ? 'text-white/70 hover:text-white' : 'text-[#6B5044]/50 hover:text-[#6B5044]'"
                   title="复制模型名"
                 >
-                  <svg v-if="copiedFreeModelName !== model" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg v-if="copiedModelName !== model" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
                   <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -399,7 +506,7 @@ async function copyFreeModelName(model: string) {
         </section>
 
         <div class="bg-white rounded-2xl shadow-sm border border-[#D97757]/10 overflow-hidden">
-          <article class="prose max-w-none p-6" v-html="marked(tutorialMarkdown)"></article>
+          <article class="prose max-w-none! p-6" v-html="marked(tutorialMarkdown)"></article>
         </div>
       </div>
     </main>
@@ -471,5 +578,39 @@ async function copyFreeModelName(model: string) {
 .prose hr {
   border-color: rgba(217, 119, 87, 0.2);
   margin: 2rem 0;
+}
+
+.code-block-wrapper {
+  position: relative;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #9ca3af;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.code-block-wrapper:hover .code-copy-btn {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.code-copy-btn.copied {
+  color: #22c55e;
 }
 </style>
