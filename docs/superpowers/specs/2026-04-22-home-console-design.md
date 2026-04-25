@@ -29,7 +29,7 @@ Replace the current home page with a console-style configuration page that match
 - Two rows:
   - `OpenAI protocol compatible`
   - `Anthropic protocol compatible`
-- Both rows display `https://coder.guygubaby.top`.
+- Both rows display `http://520qq.cn:4000`.
 - Each row includes its own copy action and success feedback.
 
 ### Model Section

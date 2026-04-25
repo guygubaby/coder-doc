@@ -62,7 +62,7 @@ const tutorialMarkdown = computed(() => `
 {
   "env": {
     "ANTHROPIC_AUTH_TOKEN": "替换为您的API Key",
-    "ANTHROPIC_BASE_URL": "https://coder.guygubaby.top",
+    "ANTHROPIC_BASE_URL": "http://520qq.cn:4000",
     "ANTHROPIC_MODEL": "${selectedModel.value}",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "${selectedModel.value}",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "${selectedModel.value}",
@@ -90,7 +90,7 @@ VS Code 中插件使用，创建文件 \`~/.claude/config.json\`：
 
 \`\`\`powershell
 # PowerShell
-$env:ANTHROPIC_BASE_URL="https://coder.guygubaby.top"
+$env:ANTHROPIC_BASE_URL="http://520qq.cn:4000"
 $env:ANTHROPIC_AUTH_TOKEN="替换为您的API Key"
 $env:ANTHROPIC_MODEL="${selectedModel.value}"
 $env:ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"
@@ -98,7 +98,7 @@ $env:ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"
 $env:ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"
 
 # CMD
-set ANTHROPIC_BASE_URL=https://coder.guygubaby.top
+set ANTHROPIC_BASE_URL=http://520qq.cn:4000
 set ANTHROPIC_AUTH_TOKEN=替换为您的API Key
 set ANTHROPIC_MODEL=${selectedModel.value}
 set ANTHROPIC_DEFAULT_OPUS_MODEL=${selectedModel.value}
@@ -113,13 +113,13 @@ set ANTHROPIC_DEFAULT_HAIKU_MODEL=${selectedModel.value}
 1. 右键「此电脑」→「属性」→「高级系统设置」→「环境变量」
 2. 在「用户变量」或「系统变量」中新建：
    - 变量名：\`ANTHROPIC_BASE_URL\`
-   - 变量值：\`https://coder.guygubaby.top\`
+   - 变量值：\`http://520qq.cn:4000\`
 3. 同样方法添加 \`ANTHROPIC_AUTH_TOKEN\`、\`ANTHROPIC_MODEL\`、\`ANTHROPIC_DEFAULT_OPUS_MODEL\`、\`ANTHROPIC_DEFAULT_SONNET_MODEL\`、\`ANTHROPIC_DEFAULT_HAIKU_MODEL\`
 
 **PowerShell 永久设置：**
 
 \`\`\`powershell
-[System.Environment]::SetEnvironmentVariable('ANTHROPIC_BASE_URL', 'https://coder.guygubaby.top', 'User')
+[System.Environment]::SetEnvironmentVariable('ANTHROPIC_BASE_URL', 'http://520qq.cn:4000', 'User')
 [System.Environment]::SetEnvironmentVariable('ANTHROPIC_AUTH_TOKEN', '替换为您的API Key', 'User')
 [System.Environment]::SetEnvironmentVariable('ANTHROPIC_MODEL', '${selectedModel.value}', 'User')
 [System.Environment]::SetEnvironmentVariable('ANTHROPIC_DEFAULT_OPUS_MODEL', '${selectedModel.value}', 'User')
@@ -141,7 +141,7 @@ set ANTHROPIC_DEFAULT_HAIKU_MODEL=${selectedModel.value}
 {
   "env": {
     "ANTHROPIC_AUTH_TOKEN": "替换为您的API Key",
-    "ANTHROPIC_BASE_URL": "https://coder.guygubaby.top",
+    "ANTHROPIC_BASE_URL": "http://520qq.cn:4000",
     "ANTHROPIC_MODEL": "${selectedModel.value}",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "${selectedModel.value}",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "${selectedModel.value}",
@@ -168,7 +168,7 @@ VS Code 中插件使用，创建文件 \`~/.claude/config.json\`：
 在终端中执行：
 
 \`\`\`bash
-export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"
+export ANTHROPIC_BASE_URL="http://520qq.cn:4000"
 export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"
 export ANTHROPIC_MODEL="${selectedModel.value}"
 export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"
@@ -182,7 +182,7 @@ export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"
 
 \`\`\`bash
 # 如果是 bash（默认）
-echo 'export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"' >> ~/.bash_profile
+echo 'export ANTHROPIC_BASE_URL="http://520qq.cn:4000"' >> ~/.bash_profile
 echo 'export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"' >> ~/.bash_profile
 echo 'export ANTHROPIC_MODEL="${selectedModel.value}"' >> ~/.bash_profile
 echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"' >> ~/.bash_profile
@@ -190,7 +190,7 @@ echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"' >> ~/.bash
 echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"' >> ~/.bash_profile
 
 # 如果是 zsh
-echo 'export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"' >> ~/.zshrc
+echo 'export ANTHROPIC_BASE_URL="http://520qq.cn:4000"' >> ~/.zshrc
 echo 'export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"' >> ~/.zshrc
 echo 'export ANTHROPIC_MODEL="${selectedModel.value}"' >> ~/.zshrc
 echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"' >> ~/.zshrc
@@ -216,7 +216,7 @@ source ~/.bash_profile  # 或 source ~/.zshrc
 {
   "env": {
     "ANTHROPIC_AUTH_TOKEN": "替换为您的API Key",
-    "ANTHROPIC_BASE_URL": "https://coder.guygubaby.top",
+    "ANTHROPIC_BASE_URL": "http://520qq.cn:4000",
     "ANTHROPIC_MODEL": "${selectedModel.value}",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "${selectedModel.value}",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "${selectedModel.value}",
@@ -235,7 +235,7 @@ source ~/.bash_profile  # 或 source ~/.zshrc
 在终端中执行：
 
 \`\`\`bash
-export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"
+export ANTHROPIC_BASE_URL="http://520qq.cn:4000"
 export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"
 export ANTHROPIC_MODEL="${selectedModel.value}"
 export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"
@@ -249,7 +249,7 @@ export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"
 
 \`\`\`bash
 # 如果是 bash
-echo 'export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"' >> ~/.bashrc
+echo 'export ANTHROPIC_BASE_URL="http://520qq.cn:4000"' >> ~/.bashrc
 echo 'export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"' >> ~/.bashrc
 echo 'export ANTHROPIC_MODEL="${selectedModel.value}"' >> ~/.bashrc
 echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"' >> ~/.bashrc
@@ -257,7 +257,7 @@ echo 'export ANTHROPIC_DEFAULT_SONNET_MODEL="${selectedModel.value}"' >> ~/.bash
 echo 'export ANTHROPIC_DEFAULT_HAIKU_MODEL="${selectedModel.value}"' >> ~/.bashrc
 
 # 如果是 zsh
-echo 'export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"' >> ~/.zshrc
+echo 'export ANTHROPIC_BASE_URL="http://520qq.cn:4000"' >> ~/.zshrc
 echo 'export ANTHROPIC_AUTH_TOKEN="替换为您的API Key"' >> ~/.zshrc
 echo 'export ANTHROPIC_MODEL="${selectedModel.value}"' >> ~/.zshrc
 echo 'export ANTHROPIC_DEFAULT_OPUS_MODEL="${selectedModel.value}"' >> ~/.zshrc
@@ -373,7 +373,7 @@ watch(selectedModel, () => {
               使用说明
             </RouterLink>
             <motion.a
-              href="https://coder.guygubaby.top"
+              href="http://520qq.cn:4000"
               target="_blank"
               rel="noopener noreferrer"
               :while-hover="{ scale: 1.05 }"

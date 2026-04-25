@@ -23,7 +23,7 @@ import { motion } from 'motion-v'
               使用说明
             </RouterLink>
             <a
-              href="https://coder.guygubaby.top" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-[#6B5044] hover:text-[#D97757] hover:bg-[#D97757]/5 inline-flex items-center gap-1">
+              href="http://520qq.cn:4000" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-[#6B5044] hover:text-[#D97757] hover:bg-[#D97757]/5 inline-flex items-center gap-1">
               官网链接
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -49,7 +49,7 @@ import { motion } from 'motion-v'
             <motion.a
               :while-hover="{scale: 1.05}"
               :while-press="{scale: 0.95}"
-              href="https://coder.guygubaby.top/register"
+              href="http://520qq.cn:4000/register"
               target="_blank"
               rel="noopener noreferrer"
               class="px-8 py-3 bg-[#D97757] text-white font-bold rounded-xl cursor-pointer hover:bg-[#C86946] transition-colors inline-flex items-center justify-center gap-2"
@@ -123,7 +123,7 @@ import { motion } from 'motion-v'
             开启 <span class="text-[#D97757]">无限可能</span>
           </h2>
           <p class="text-lg text-[#6B5044] mb-8 max-w-2xl mx-auto">
-            <a href="https://coder.guygubaby.top/register" target="_blank" rel="noopener noreferrer" class="text-[#D97757] hover:underline inline-flex items-center">
+            <a href="http://520qq.cn:4000/register" target="_blank" rel="noopener noreferrer" class="text-[#D97757] hover:underline inline-flex items-center">
               <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
@@ -131,7 +131,7 @@ import { motion } from 'motion-v'
             </a>即可获得 100 次调用体验，每日签到持续领取额度。按次计费透明清晰，单次一分钱，不再为 token 用量焦虑。
           </p>
           <motion.a
-            href="https://coder.guygubaby.top/register"
+            href="http://520qq.cn:4000/register"
             target="_blank"
             rel="noopener noreferrer"
             :while-hover="{ scale: 1.05 }"

