@@ -61,7 +61,7 @@ import { motion } from 'motion-v'
             Coding Plan <span class="text-[#D97757]">中转站</span>
           </h1>
           <p class="text-lg text-[#6B5044] mb-12 max-w-2xl mx-auto">
-            支持 GLM (glm-5.1、glm-5)、MiniMax (minimax-m2.7、minimax-m2.5)、Kimi (kimi-k2.6、kimi-k2.5) 等主流国产 AI 模型 API 中转，为开发者提供稳定高效的编程助手服务
+            支持 GLM (glm-5.1、glm-5)、DeepSeek (deepseek-v4-pro、deepseek-v4-flash)、XiaoMi (mimo-v2.5-pro)、MiniMax (minimax-m2.7、minimax-m2.5)、Kimi (kimi-k2.6、kimi-k2.5) 等主流国产 AI 模型 API 中转，为开发者提供稳定高效的编程助手服务
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.a
