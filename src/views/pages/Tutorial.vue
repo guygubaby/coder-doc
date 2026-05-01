@@ -11,6 +11,9 @@ const PAID_MODEL_NAMES = [
   'kimi-k2.6',
   'minimax-m2.5',
   'minimax-m2.7',
+  'deepseek-v4-flash',
+  'deepseek-v4-pro',
+  'mimo-v2.5-pro',
 ] as const
 
 const FREE_MODEL_NAMES = [
