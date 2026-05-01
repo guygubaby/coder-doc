@@ -76,8 +76,26 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
 
 <template>
   <div class="min-h-screen bg-[#FFF8F3] text-[#3D2C2C] flex flex-col">
+    <!-- 优惠公告 -->
+    <div class="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-[#D97757] to-[#E8956E] text-white">
+      <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-center gap-2 text-sm">
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+        </svg>
+        <span class="font-medium">限时优惠：全场模型现已开启 0.5 倍费率，新用户注册即享超值体验</span>
+        <a
+          href="http://520qq.cn:4000"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ml-2 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-full text-xs font-semibold transition-colors"
+        >
+          立即注册
+        </a>
+      </div>
+    </div>
+
     <!-- Navbar -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#D97757]/10">
+    <nav class="sticky top-10 z-50 bg-white/80 backdrop-blur-md border-b border-[#D97757]/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <RouterLink to="/" class="flex items-center gap-2">
@@ -109,7 +127,7 @@ export ANTHROPIC_MODEL="${selectedModel.value}"`
       </div>
     </nav>
 
-    <main class="flex-1">
+    <main class="flex-1 pt-10">
       <div class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <!-- 使用方式 -->
         <section class="mb-8">
