@@ -4,25 +4,23 @@ import { shallowRef } from 'vue'
 import { motion, Motion } from 'motion-v'
 
 const MODEL_NAMES = [
+  'deepseek-v3.2',
   'glm-5',
   'glm-5.1',
   'kimi-k2.5',
   'kimi-k2.6',
-  'minimax-m2.5',
-  'minimax-m2.7',
   'deepseek-v4-flash',
   'deepseek-v4-pro',
+  'gpt-5.5',
+  'minimax-m2.5',
+  'minimax-m2.7',
+  'qwen3.6-plus',
   'mimo-v2.5-pro',
 ] as const
 
 const FREE_MODEL_NAMES = [
-  'deepseek-v3.2-free',
-  'glm-4.7-free',
   'step-3.5-flash-free',
-  'kimi-k2-free',
-  'glm-4.5-air',
-  'nemotron-3-super',
-  'arcee-trinity-free',
+  'any-free',
 ] as const
 
 const selectedModel = shallowRef<string>(MODEL_NAMES[0])
@@ -282,8 +280,7 @@ export ANTHROPIC_MODEL="{{ selectedModel }}"</code></pre>
               免费模型可能因算力原因不可用或延迟较高。
             </p>
             <p class="text-sm text-[#6B5044] mt-2">
-              可使用 <code class="px-1.5 py-0.5 bg-white rounded text-[#D97757] font-mono text-xs">any-free</code> 或
-              <code class="px-1.5 py-0.5 bg-white rounded text-[#D97757] font-mono text-xs">kilo-free</code> 模型自动选择可用免费模型。
+              可使用 <code class="px-1.5 py-0.5 bg-white rounded text-[#D97757] font-mono text-xs">any-free</code> 模型自动选择可用免费模型。
             </p>
           </div>
         </div>

@@ -5,25 +5,23 @@ import { motion, Motion } from 'motion-v'
 import { marked } from 'marked'
 
 const PAID_MODEL_NAMES = [
+  'deepseek-v3.2',
   'glm-5',
   'glm-5.1',
   'kimi-k2.5',
   'kimi-k2.6',
-  'minimax-m2.5',
-  'minimax-m2.7',
   'deepseek-v4-flash',
   'deepseek-v4-pro',
+  'gpt-5.5',
+  'minimax-m2.5',
+  'minimax-m2.7',
+  'qwen3.6-plus',
   'mimo-v2.5-pro',
 ] as const
 
 const FREE_MODEL_NAMES = [
-  'deepseek-v3.2-free',
-  'glm-4.7-free',
   'step-3.5-flash-free',
-  'kimi-k2-free',
-  'glm-4.5-air',
-  'nemotron-3-super',
-  'arcee-trinity-free',
+  'any-free',
 ] as const
 
 const selectedModel = shallowRef<string>(PAID_MODEL_NAMES[0])
@@ -515,8 +513,7 @@ watch(selectedModel, () => {
             </div>
             <div class="border-t border-[#D97757]/10 px-5 py-3 bg-[#D97757]/5">
               <p class="text-xs text-[#6B5044]">
-                可使用 <code class="px-1 py-0.5 bg-white rounded text-[#D97757] font-mono">any-free</code> 或
-                <code class="px-1 py-0.5 bg-white rounded text-[#D97757] font-mono">kilo-free</code> 自动选择可用免费模型
+                可使用 <code class="px-1 py-0.5 bg-white rounded text-[#D97757] font-mono">any-free</code> 自动选择可用免费模型
               </p>
             </div>
           </div>
